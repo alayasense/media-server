@@ -3,7 +3,11 @@
 #include <stdint.h>
 #include <stddef.h>
 
-#define RTP_H2645_BITSTREAM_FORMAT_DETECT 1
+/* Disabled auto-detection: asfly already converts AVCC to Annex-B properly.
+ * This auto-detection can incorrectly identify Annex-B data as AVCC when
+ * the NAL payload contains byte patterns resembling start codes (e.g., SEI data).
+ */
+// #define RTP_H2645_BITSTREAM_FORMAT_DETECT 1
 
 static const uint8_t* h264_startcode(const uint8_t* data, int bytes)
 {
